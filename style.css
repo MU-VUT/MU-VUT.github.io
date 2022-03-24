@@ -53,6 +53,32 @@ header {
     padding: 2vh 0;
 }
 
+ul {
+    list-style: none; /* Remove list bullets */
+    padding: 0;
+    margin: 0;
+    font-size: 1.1em;
+    line-height: 1.4;
+}
+  
+li {
+    padding-left: 16px;
+    
+}
+  
+li::before {
+    content: ""; /* Insert content that looks like bullets */
+    padding-right: 8px;
+    content:''; 
+    display:inline-block; 
+    height: 1.75em; 
+    width:1.75em; 
+    background-image:url('img/arrow-next.svg'); 
+    background-size:contain; 
+    background-repeat:no-repeat;
+    background-position: left .3em; 
+}
+
 footer {
     margin-top: auto;
     min-height: 1.5em;
