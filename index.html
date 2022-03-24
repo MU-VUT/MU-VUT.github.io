@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>VAM</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="main">
+        <header>
+            <h1 class="title"><span class="title-item">Vogelova aproximační metoda</span></h1>
+            <p class="title title-inline"><span class="title-item title-dark">Generátor zadání</span></p>
+        </header>
+        <p class="text border-b">
+            <strong class="navod">Návod:</strong> Nejdříve je nutné zvolit počet zadání, počet dodavatelů/řádků matice a
+            počet odběratelů/sloupců matice. V závorkách je vždy uveden dovolený rozsah hodnot. <br>
+            Dále je nutné stisknout tlačítko <strong>Generuj</strong>, které vytvoří zadání v HTML podobě. Následně
+            stiskněte tlačítko <strong>Vytvoř PDF</strong>, které vás odkáže na tisk zadání do PDF. U tisku je nutné
+            zvolit orientaci na šířku A4 a odtrhnout možnost "Vytisknout záhlaví a zápatí".
+        </p>
+        <div class="border-b">
+            <label for="pocetZadani">Zadejte počet zadání (1-99)</label>
+            <input type="number" name="pocetZadani" id="pocetZadani" min="1" max="99" value="1">
+            <br>
+            <label for="pocetDodavatelu">Zadejte počet dodavatelů/řádků (3-10)</label>
+            <input type="number" name="pocetDodavatelu" id="m" min="3" max="10" value="5">
+            <br>
+            <label for="pocetOdberatelu">Zadejte počet odběratelů/sloupců (3-10)</label>
+            <input type="number" name="pocetOdberatelu" id="n" min="3" max="10" value="5">
+            <p>
+                <button class="button" id="button" onclick="document.getElementById('btPrint').style.display = 'inline';">Generuj</button>
+                <input type="button" class="button" style="display: none;" value="Vytvoř PDF" id="btPrint" onclick="createPDF()" />
+            </p>
+        </div>
+        <div id="holder">
+        </div>
+        <footer>
+            <span>&copy; Michal Urbánek - Web development & Web design</span>
+        </footer>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,128 @@
+body {
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    padding: 0 4vw;
+    background: #e8eaea;
+    margin: 0;
+    
+}
+
+header {
+    min-height: 50px;
+    text-align: center;
+    background: url("/Users/Red Devil/Desktop/VAM-20220322T153340Z-001/VAM/img/dots-pattern.svg") repeat #e6efec;
+    padding: 2vh 0;
+    margin: -1vw;
+}
+
+.title {
+    font-size: 44px;
+    line-height: 1.4;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    margin: 0;
+}
+
+.border-b {
+	border-bottom: 2px solid #e8eaea;
+}
+.title-item {
+    background: #004f71;
+    word-spacing: .195em;
+    color: white;
+    padding: .10em 20px;
+}
+
+.title-dark {
+    background-color: #004766;
+}
+
+.title-inline {
+    text-transform: none;
+}
+
+.main {
+    background: white;
+    padding: 1vw;
+    min-height: calc(100vh - 1.5em);
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.text {
+    padding: 2vh 0;
+}
+
+footer {
+    margin-top: auto;
+    min-height: 1.5em;
+    text-align: center;
+}
+
+.navod {
+    font-size: 1.2em;
+}
+
+input {
+    margin-top: 5px;
+}
+
+.button {
+    padding: 12px 30px;
+    margin: 0 10px;
+    color: white;
+    background-color: #1676d0;
+    font-size: 14px;
+    letter-spacing: .08em;
+    line-height: 16px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    font-weight: bold;
+    border: 0;
+    transition: 0.3s;
+}
+
+.button:hover {
+    background-color: #004766;
+    cursor: pointer;
+}
+
+
+
+table, td {
+    border: 1px solid;
+    font-size: 1.25em;
+}
+table {
+    border-collapse: collapse;
+}
+
+td {
+    padding: 30px;
+}
+
+td.upper-right {
+    text-align: right;
+    vertical-align: top;
+    padding: 5px;
+}
+
+.mt20 {
+    margin-top: 20px;
+}
+
+.mb20 {
+    margin-bottom: 20px;
+}
+
+@media screen and (min-width: 2400px) {
+    .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media print {
+    #vysledky {page-break-after: always;}
+    #tab {page-break-before: always;}
+  }
