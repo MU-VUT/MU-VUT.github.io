@@ -9,7 +9,7 @@ body {
 header {
     min-height: 50px;
     text-align: center;
-    background: url("/Users/Red Devil/Desktop/VAM-20220322T153340Z-001/VAM/img/dots-pattern.svg") repeat #e6efec;
+    background: url("/img/dots-pattern.svg") repeat #e6efec;
     padding: 2vh 0;
     margin: -1vw;
 }
