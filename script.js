@@ -15,7 +15,7 @@ var z = 0;
 
 //Zadání minima a maxima generátoru
 const min = 10;
-const max = 50;
+const max = 40;
 
 //funkce kontroly správného zadání
 function control() {
@@ -55,12 +55,15 @@ function generator() {
 
     for (let i = 0; i < m; i++) {
         for (let j = 0; j < n; j++) {
-            C[i][j] = getRandomNumber(1, 99);
+            C[i][j] = getRandomNumber(1, 50);
         }
     }
 
     X = new Array(m);
     for (let i = 0; i < m; i++) X[i] = new Array(n).fill(0); //Vytvoření prázdné matice přepravy
+
+    zadaniZ = new Array(m);
+    for (let i = 0; i < m; i++) zadaniZ[i] = new Array(n).fill(0); //Vytvoření prázdné matice nákladů
 
     Z = new Array(m);
     for (let i = 0; i < m; i++) Z[i] = new Array(n).fill(0); //Vytvoření prázdné matice nákladů
@@ -76,7 +79,7 @@ function zadani() {
     let zadaniC = C;
     for (let i = 0; i < m; i++) {
         for (let j = 0; j < n; j++) {
-            Z[i][j] = zadaniC[i][j]
+            zadaniZ[i][j] = zadaniC[i][j]
         }
     }
 
@@ -115,16 +118,29 @@ function zadani() {
 
 //funkce vyrovnávač úloh
 function vyrovnavac() {
-    let sumA = A.reduce((a, b) => a + b, 0); //Sumace A
-    let sumB = B.reduce((a, b) => a + b, 0); //Sumace B
+    var sumA = A.reduce((a, b) => a + b, 0); //Sumace A
+    var sumB = B.reduce((a, b) => a + b, 0); //Sumace B
 
     if (sumA > sumB) {
-        let rozdil = sumA - sumB;
-        B[n - 1] += rozdil;
+        for (let i = 0; i < B.length; i++) {
+            B[i] += ~~((sumA - sumB) / n);
+        }
     }
     else if (sumA < sumB) {
-        let rozdil = sumB - sumA;
-        A[m - 1] += rozdil;
+        for (let i = 0; i < A.length; i++) {
+            A[i] += ~~((sumB - sumA) / n);
+        }       
+    }
+
+    //Ještě jednou projet, protože vznikne zbytek, a ten se přičtě k poslednímu číslu
+    sumA = A.reduce((a, b) => a + b, 0); //Sumace A
+    sumB = B.reduce((a, b) => a + b, 0); //Sumace B
+
+    if (sumA > sumB) {
+            B[n-1] += (sumA - sumB);
+    }
+    else if (sumA < sumB) {
+            A[m-1] += (sumB - sumA);
     }
 }
 
@@ -240,12 +256,16 @@ function vam() {
 
 //funkce výpočet Z nákladů
 function naklady() {
+    var z = 0;
     for (let i = 0; i < m; i++) {
         for (let j = 0; j < n; j++) {
-            Z[i][j] = Z[i][j] * X[i][j];
-            z += Z[i][j];
+            Z[i][j] = zadaniZ[i][j] * X[i][j];
+            var flat = Z.flat(Infinity);
+            z = flat.reduce((total, num) => {return total + num}, 0);
+            
         }
     }
+    return z;
 }
 
 //funkce display output výsledků
@@ -281,14 +301,14 @@ function displayOutput() {
         tableVysledky += ("</tr>")
     };
     let nn = n + 1;
+    let zz = naklady();
     let zRozdelene;
 
-    zRozdelene = z.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    zRozdelene = zz.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     tableVysledky += ("<tr><td colspan='" + nn + "'> Celkové náklady na přepravu = " + zRozdelene + " Kč</td></tr>")
     output6 = output6.substring(0, output6.indexOf('>') + 1);
     output6 += tableVysledky;
     output6 += ("</table>");
-
 }
 
 //funkce vytvoření PDF
@@ -339,7 +359,6 @@ function application() {
         vyrovnavac();
         zadani();
         vam();
-        naklady();
         displayOutput();
         // textHolder = textHolder + ("<div id='tab" + cisloZadani + "' class='row'><div class='column'><p id='zadani" + cisloZadani + "'></p><table id='table" + cisloZadani + "'><tr></tr></table></div><div class='column'><p id='vysledky'></p><table id='table2'><tr></tr></table></div></div><span id='rozdelovac'></span>");
         textHolder = textHolder + ("<div id='tab' class='row'><div class='column'>");
