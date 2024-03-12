@@ -4,7 +4,7 @@ Test assignments generator VAM for students of logistics at Faculty of Mechanica
 
 More about VAM: [link](https://www.geeksforgeeks.org/transportation-problem-set-4-vogels-approximation-method/)
 
-Webiste powered by GitHub Pages.
+Website powered by GitHub Pages.
 [Link to website](https://mu-vut.github.io/). Only in czech version.
 
 ## Instructions
