@@ -106,17 +106,20 @@ function zadani(A, B, C, zadaniZ, cisloZadani, m, n) {
 }
 
 //funkce vyrovnávač úloh
-function vyrovnavac(A, B) {
+function vyrovnavac(A, B, n) {
   var sumA = A.reduce((a, b) => a + b, 0); //Sumace A
   var sumB = B.reduce((a, b) => a + b, 0); //Sumace B
 
   if (sumA > sumB) {
+    var rozB = Math.floor((sumA - sumB) / n);
     for (let i = 0; i < B.length; i++) {
-      B[i] += ~~((sumA - sumB) / n);
+      B[i] += rozB;
     }
   } else if (sumA < sumB) {
+    var rozA = Math.floor((sumB - sumA) / n);
+
     for (let i = 0; i < A.length; i++) {
-      A[i] += ~~((sumB - sumA) / n);
+      A[i] += rozA;
     }
   }
 
@@ -371,7 +374,7 @@ function application() {
 
   for (let num = 0; num < pocetZadani; num++) {
     let { Agen, Bgen, C, zadaniZ } = generator(m, n);
-    let { A, B } = vyrovnavac(Agen, Bgen);
+    let { A, B } = vyrovnavac(Agen, Bgen, n);
     let { output, output4 } = zadani(A, B, C, zadaniZ, cisloZadani, m, n);
     let { output5, output6 } = displayOutput(
       A,
